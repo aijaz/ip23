@@ -10,7 +10,7 @@ This class is based on [Python Crash Course, 3rd Edition](https://nostarch.com/p
     - About MYPI
         + Two sisters
         + Originally for girls
-        + I do outdoor stuff
+        + I do outdoor stuff and am also Director of Technology
     - What you'll learn in this class
         + Programming with Python
         + Good enough to interview
