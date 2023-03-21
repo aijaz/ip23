@@ -1110,3 +1110,277 @@ else:
     print("a and b are NOT equal")
 ```
 
+
+# Week 9 3/19
+
+```python
+team = input("What is your favorite NBA team? ")
+
+if team == "Bulls":
+    print("They're my favorite team, too!")
+    print("They're my hometown team")
+elif team == "Nuggets":
+    print("Now that I live in CO, I root for the Nuggets.")
+elif team == "Warriors":
+    print("They're exciting to watch")
+else:
+    print("I don't have strong feelings about them.")
+
+print("It's been nice talking to you")
+```
+
+- A boolean value is a value that's either true or false. It can't be anything else
+- A boolean expression is an expression that has a boolean value (True or False)
+- An if statement has 0 or more 'elif' clauses, and 0 or 1 else clauses
+
+### elif vs multiple ifs
+
+```python
+age = 75
+
+if age < 3:
+    print("You're a baby")
+elif age < 6:
+    print("You're a toddler")
+elif age < 10:
+    print("You're a child")
+elif age < 13:
+    print("You're a tween")
+elif age < 20:
+    print("You're a teenager")
+elif age < 33:
+    print("You're a youth")
+elif age < 41:
+    print("You're an grown up")
+else:
+    print("OMG! You're ancient!")
+
+
+if age < 3:
+    print("You're a baby")
+if age < 6:
+    print("You're a toddler")
+if age < 10:
+    print("You're a child")
+if age < 13:
+    print("You're a tween")
+if age < 20:
+    print("You're a teenager")
+if age < 33:
+    print("You're a youth")
+if age < 41:
+    print("You're an grown up")
+else:
+    print("OMG! You're ancient!")
+
+age = 15
+
+# Brittle code
+if age < 3:
+    print("You're a baby")
+if age >= 3 and age < 6:
+    print("You're a toddler")
+if age >= 6 and age < 10:
+    print("You're a child")
+if age >= 10 and age < 13:
+    print("You're a tween")
+if age >= 13 and age < 20:
+    print("You're a teenager")
+if age >= 20 and age < 33:
+    print("You're a youth")
+if age >= 33 and age < 41:
+    print("You're an grown up")
+elif age >= 41:
+    print("OMG! You're ancient!")
+
+age = input("How old are you? ")
+age = int(age)
+if age < 3:
+    print("You're a baby")
+elif age < 6:
+    print("You're a toddler")
+elif age < 10:
+    print("You're a child")
+elif age < 13:
+    print("You're a tween")
+elif age < 20:
+    print("You're a teenager")
+elif age < 33:
+    print("You're a youth")
+elif age < 41:
+    print("You're an grown up")
+else:
+    print("OMG! You're ancient!")
+
+if age >= 18:
+    print("You're old enough to vote")
+else:
+    print("You're not old enough to vote yet")
+
+Be careful about mathematical vs lexical sorting!
+
+age = input("How old are you? ")
+if age < "3":
+    print("You're a baby")
+elif age < "6":
+    print("You're a toddler")
+elif age < "10":
+    print("You're a child")
+elif age < "13":
+    print("You're a tween")
+elif age < "20":
+    print("You're a teenager")
+elif age < "33":
+    print("You're a youth")
+elif age < "41":
+    print("You're an grown up")
+else:
+    print("OMG! You're ancient!")
+
+# You have to be careful about comparing numbers that are strings, 
+# because the compare lexically, not numerically
+
+# 1 10 100 2 20 200 3 30 300 lexical sorting
+# 1 2 3 10 20 30 100 200 300 numerical sorting
+```
+
+
+```python
+team = input("What is your favorite team? ")
+if team.strip().lower() == "bulls":
+    print("They're my favorite team, too!")
+    print("They're my hometown team")
+elif team.strip().title() == "Nuggets":
+    print("Now that I live in CO, I root for the Nuggets.")
+elif team.strip().upper() == "WARRIORS":
+    print("They're exciting to watch")
+else:
+    print("I don't have strong feelings about them.")
+
+print("It's been nice talking to you")
+
+
+# nested if statements
+age = input("How old are you? ")
+age = int(age)
+if age < 3:
+    print("You're a baby")
+elif age < 6:
+    print("You're a toddler")
+elif age < 10:
+    print("You're a child")
+elif age < 13:
+    print("You're a tween")
+elif age < 20:
+    print("You're a teenager")
+    if age < 18:
+        print("You're not an adult")
+    else:
+        print("You're an adult")
+elif age < 33:
+    print("You're a youth")
+elif age < 41:
+    print("You're an grown up")
+else:
+    print("OMG! You're ancient!")
+
+if age >= 18:
+    print("You're old enough to vote")
+else:
+    print("You're not old enough to vote yet")
+
+age = input("How old are you? ")
+age = int(age)
+
+```
+
+## Creating Boolean expressions by joining Boolean expressions with and and or
+
+```python
+if age >= 13 and age <= 19:
+    print("You're a teenager")
+else:
+    print("You are not a teenager")
+
+# or
+if 13 <= age <= 19:
+    print("You're a teenager")
+else:
+    print("You are not a teenager")
+
+
+age = input("How old are you? ")
+age = int(age)
+income = int(input("How much income did you have in 2022? "))
+
+if age < 18 or income < 1000:
+    print("You do not need to file")
+else:
+    print("You need to file")
+
+if age >= 13 and age <= 19:
+    print("You're a teenager")
+```
+
+```python
+and AND or truth tables
+
+a = True
+b = True
+
+print(f"{a} and {b} == {a and b}, {a} or {b} == {a or b}")
+
+a = False
+b = True
+
+print(f"{a} and {b} == {a and b}, {a} or {b} == {a or b}")
+
+a = True
+b = False
+
+print(f"{a} and {b} == {a and b}, {a} or {b} == {a or b}")
+
+a = False
+b = False
+
+print(f"{a} and {b} == {a and b}, {a} or {b} == {a or b}")
+
+a = True
+b = True
+c = True
+d = True
+
+if a and b and c and d:
+    print("this is true")
+else:
+    print("This is false")
+
+w = False
+x = False
+y = True
+z = False
+
+if w or x or y or z:
+    print("This is true")
+else:
+    print("this is false")
+```
+
+### More booleans
+
+```python
+l1 = [1, 2, 3, 4, 5]
+print(12 in l1)
+
+if 12 in l1:
+    print("12 is in the list")
+else:
+    print("12 is not in the list")
+
+
+if "ja" in "Aijaz":
+    print("It's a match")
+else:
+    print("Could not find the string")
+
+```
