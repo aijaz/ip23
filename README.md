@@ -1384,3 +1384,222 @@ else:
     print("Could not find the string")
 
 ```
+
+# Week 10 (Homework Review Week)
+
+```python
+moons = [
+    ("Mercury", 0),
+    ("Venus", 0),
+    ("Earth", 1),
+    ("Mars", 2),
+    ("Jupiter", 95),
+    ("Saturn", 83),
+    ("Uranus", 27),
+    ("Neptune", 14),
+]
+
+## The obvious way
+
+for m in moons:
+    if m[1] > 20:
+        print(f"{m[0]} has {m[1]} moons")
+
+
+## the list comprehension way
+## A little more complicated and prone to complication
+
+for m in [m20 for m20 in moons if m20[1] > 20]:
+    print(f"{m[0]} has {m[1]} moons")
+
+
+## Question 2
+## This prints Earth
+for m in moons:
+    if m[0] in ['Mercury', 'Venus', 'Mars']:
+        print(f"{m[0]} Yes")
+    else:
+        print(f"{m[0]} Not yet")
+
+
+print("---------------------------------------")
+
+## Eliminate Earth from the list: version 1
+for m in moons:
+    if m[0] == 'Earth':
+        # do something
+        continue
+    if m[0] in ['Mercury', 'Venus', 'Mars']:
+        print(f"{m[0]} Yes")
+    else:
+        print(f"{m[0]} Not yet")
+
+    print(f"Done with {m[0]}")
+
+
+print("---------------------------------------")
+for m in [x for x in moons if x[0] != 'Earth']:
+    if m[0] in ['Mercury', 'Venus', 'Mars']:
+        print(f"{m[0]} Yes")
+    else:
+        print(f"{m[0]} Not yet")
+
+
+print("---------------------------------------")
+
+## Eliminate Earth from the list: version 1
+for m in moons:
+    if m[0] == 'Earth':
+        pass
+    elif m[0] in ['Mercury', 'Venus', 'Mars']:
+        print(f"{m[0]} Yes")
+    else:
+        print(f"{m[0]} Not yet")
+
+    print(f"Done with {m[0]}")
+
+print("---------------------------------------")
+
+# This corrupts the list
+# moons.remove(('Earth', 1))
+moons.pop(2)
+for m in moons:
+    if m[0] in ['Mercury', 'Venus', 'Mars']:
+        print(f"{m[0]} Yes")
+    else:
+        print(f"{m[0]} Not yet")
+
+
+
+print("---------------------------------------")
+
+# This corrupts the list
+moons2 = list(moons)
+moons2.pop(2)
+for m in moons2:
+    if m[0] in ['Mercury', 'Venus', 'Mars']:
+        print(f"{m[0]} Yes")
+    else:
+        print(f"{m[0]} Not yet")
+
+print(moons)
+
+Eliminate Earth from the list: version 1
+for m in moons:
+    if m[0] == 'Earth':
+        continue
+    if m[0] == 'Mercury' or m[0] == 'Venus' or m[0] == 'Mars':
+        print(f"{m[0]} Yes")
+    else:
+        print(f"{m[0]} Not yet")
+
+
+Comparing the two boolean methods
+    if m[0] in ['Mercury', 'Venus', 'Mars', 'Mercury']:
+    if m[0] == 'Mercury' or m[0] == 'Venus' or m[0] == 'Mars':
+
+
+user_name = input("What is your name? ").strip()
+computer_name = "HAL"
+if user_name.lower() == computer_name.lower():
+    print("Hey! That's my name, too!")
+else:
+    print(f"That's a nice name! I love the name '{user_name}'.")
+
+numbers = [
+"",
+"minë",
+"atta",
+"neldë",
+"canta",
+"lempë",
+"enquë",
+"otso",
+"tolto",
+"nertë",
+]
+
+# One way to do this
+for i in range(1, 10):
+    print(f"{i} = {numbers[i]} in Elven")
+
+for i, num in enumerate(numbers):
+    if i == 0:
+        continue
+    print(i, num)
+
+# Yet another option
+for i, x in enumerate(numbers[1:]):
+    print(i + 1, x)
+
+
+# Of these 2, I like the first method more.
+
+
+
+numbers_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+elvin_list = ['minë', 'atta', 'nelde', 'canta',
+              'lempe', 'enque', 'otso', 'tolto',
+              'nerte']
+for item1, item2 in zip(numbers_list, elvin_list):
+    print(f"{item1} = {item2}")
+
+jojo = [[1, "mine"], [2, "atta"]]
+for i in jojo:
+    print(i[0], i[1])
+
+# Cust support question
+
+response = input("How can I help you? ").strip().lower()
+if "donat" in response:
+    print("For donations, contact Aijaz")
+elif "volunteer" in response:
+    print("For volunteering, contact Ayesha")
+else:
+    print("Sorry, I don't understand")
+
+
+num = input("Gimme a number from 1 to 8: ")
+num = int(num)
+if num < 1:
+    print("Too low")
+elif num > 8:
+    print("Too high")
+else:
+    print(moons[num-1][0])
+
+# Wordle Homework (Make sure to save these for later weeks)
+
+word = input("Enter a word: ")
+if len(word) != 5:
+    print("Invalid length")
+
+chars = []
+for character in word:
+    chars.append(character.upper())
+
+print(chars)
+
+
+s = "Aijaz,Aisha,Aminah,Hind,Jojo"
+t = s.split(",")
+print(t)
+
+chars = list(word.upper())
+print(chars)
+
+result = []
+secret_word = input("Enter a word: ").strip().upper()
+guess = input("Enter a word: ").strip().upper()
+if len(secret_word) == 5 and len(guess) == 5:
+    for i, letter in enumerate(guess):
+        if secret_word[i] == letter:
+            result.append('Y')
+        elif letter in secret_word:
+            result.append('-')
+        else:
+            result.append('N')
+
+print(result)
+
+```
