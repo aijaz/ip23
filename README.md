@@ -1603,3 +1603,375 @@ if len(secret_word) == 5 and len(guess) == 5:
 print(result)
 
 ```
+
+# Week 11
+
+# Week 11 4/2/23
+
+```python
+"""
+Aminah
+Jojo
+Safaa
+Sarah
+"""
+
+number = 1
+while number <= 10:
+    print(number)
+    number = number + 0.5
+print("Done")
+
+number = 10
+while number >= 1:
+    print(number)
+    number = number - 1
+
+print("Liftoff")
+
+name = "aijaz"
+for i in name:
+    print(i)
+
+i = 0
+while i < len(name):
+    print(name[i])
+    i = i + 1
+
+# Data Structures we have seen so far
+# simple variables that hold one value (scalar)
+# strings - iterable
+# lists - iterable
+# tuples - iterable
+
+d = {"computer": "machine"}
+print(d["computer"])
+
+d = {"computer": "machine",
+     "pen": "instrument for writing"}
+print(d["computer"])
+print(d["pen"])
+
+m = {"Mercury": 0,
+     "Venus": 0,
+     "Earth": 0
+      }
+
+print(m["Mercury"])
+print(m["Earth"])
+
+m["Earth"] = 1
+print(m["Earth"])
+
+m["Mars"] = 2
+
+print(m["Mars"])
+del(m["Earth"])
+# print(m["Earth"]) # This will crash the app
+
+m["Jupiter"] = 95
+
+print(m.keys())
+print(m.values())
+print(m.items())
+
+planet_name = input("Enter the name of a planet: ")
+if planet_name in m.keys():
+    print(m[planet_name])
+else:
+    print("I don't know")
+
+genders = {
+    "Aminah": 'Feminine',
+    "Muhammad": 'Masculine',
+    "Aijaz": "Masculine",
+    "Noor": "Both, masculine and feminine"
+}
+
+name = input("Enter your name: ")
+g = genders.get(name)
+print(g)
+print(f"This is a {g} name")
+
+.get is Equivalent to
+if name in genders.keys():
+    g = genders[name]
+else:
+    g = None
+
+g = genders.get(name, 'Unknown')
+Equivalent to:
+if name in genders.keys():
+    g = genders[name]
+else:
+    g = 'Unknown'
+
+name = input("Enter your name: ")
+g = genders.get(name, 'Unknown')
+print(g)
+print(f"This is a {g} name")
+
+name = input("Enter your name: ")
+g = genders.get(name)
+if g is None:
+    print("I have never heard this name before")
+else:
+    print(f"This is a {g} name")
+
+for k in genders.keys():
+    print(f"{k} is a {genders[k]} name")
+
+for k in sorted(genders.keys()):
+    print(f"{k} is a {genders[k]} name")
+
+
+d = {"a": "Aijaz",
+     "b": 1,
+     "c": ['Mercury', 'Venus', 'Earth', 'Mars'],
+     "d": (2, 255),
+     "e": {"computer": "machine", "pen": "writing instrument"}
+     }
+
+characters = {
+    "Aang": {
+        "nationality": "Southern Air Temple",
+        "children": ["Bumi", "Kya", "Tenzin"],
+        "bending": ["Air", "Water", "earth", "fire", "energy"]
+    }
+}
+
+print(characters["Aang"]["nationality"])
+print(sorted(characters["Aang"]["bending"]))
+```
+
+## Functions
+
+```python
+def greet():
+    print("Hello. My name is Inigo Montoya.")
+    print("You killed my father.")
+    print("Prepare to die.")
+
+greet()
+
+# As if I had typed in:
+print("Hello! My name is Inigo Montoya.")
+print("You killed my father.")
+print("Prepare to die.")
+
+greet()
+greet()
+
+# Can't do greet() * 3. We don't know why, yet
+
+for _ in range(3):
+    greet()
+
+
+def loudly_greet(greeting):
+    print(greeting.upper())
+
+
+loudly_greet("Hello")
+loudly_greet("Aloha")
+
+def lg():
+    print("goodbye".upper())
+
+
+def triple(n):
+    return n * 3
+
+
+# x = 3
+y = triple(10)  # as if you typed in y = 30
+print(y)
+
+
+def multiply(a, b):
+    return a * b
+
+product = multiply(10, 5)
+print(product)
+
+def area_of_circle(radius):
+    return 3.14 * radius * radius
+
+big_radius = 10
+small_radius = 3
+print(area_of_circle(small_radius))
+print(area_of_circle(big_radius))
+
+def new_greet():
+    return """Hello, my name is Inigo Montoya.
+You killed my father.
+Prepare to die.
+"""
+
+print(new_greet() * 3)
+v = greet()
+print(v)
+
+
+def even_newer_greet(loud):
+    text = """Hello, my name is Inigo Montoya.
+You killed my father.
+Prepare to die.
+"""
+    if loud:
+        return text.upper()
+    else:
+        return text
+
+
+print(even_newer_greet(False))
+print(even_newer_greet(False))
+print(even_newer_greet(True))
+
+def divide(a, b):
+    if b == 0:
+        return None
+    return a / b
+
+print(divide(6,3))
+print(divide(6,0))
+
+print(greet())
+
+print(multiply("Hello", 5))
+print(multiply("Nana, ", 5) , "Batman!")
+
+print(multiply(new_greet(), 3))
+
+x, y, z = "Aijaz", "Jojo", "Mariam"
+
+x, y, z = {"a": 1}, {"b": 2}, {"Mercury": 0}
+
+```
+
+# Week 12 4/9/2023
+
+```python
+"""
+Aminah
+Hind
+Jojo
+Mariam
+Safaa
+Sarah
+Yasin
+"""
+
+maximum_guesses = 6
+number_of_guesses = 0
+
+random_word = 'OCEAN'
+
+number = 10
+while number >= 0:
+    if number == 3:
+        break
+    print(number)
+    number = number - 1
+
+
+# print(f"Outside the loop, number is {number}")
+if number == -1:
+    print("Liftoff")
+else:
+    print("The launch has been cancelled")
+
+def print_body_method_2():
+    m = 1
+    while m <= max_number:
+        print(m)
+        m = m + 1
+
+
+max_number = 12
+
+# first line
+
+
+
+# def print_body():
+#     for n in range(max_number):
+#         print(n + 1, end=" ")  # print the header column
+#         for j in range(max_number):
+#             print((n + 1) * (j + 1), end=" ")
+#         print("")
+
+range(w) == range(0, w)
+
+for x in range(0):
+    print(x)
+
+for i in range(0, 5):
+    print(i)
+    for j in range(i):
+        print("🐈")
+
+# first iteration
+print(0)
+for j in range(0):
+    print("🐈")
+
+# second iteration
+print(1)
+for j in range(1):
+    print("🐈")
+
+# third iteration
+print(2)
+for j in range(2):
+    print("🐈")
+
+# Fourth iteration
+print(3)
+for j in range(3):
+    print("🐈")
+
+# Fifth iteration
+print(4)
+for j in range(4):
+    print("🐈")
+
+for i in range(0, 5):
+    print(i)
+    for j in range(0, i):
+        print("🐈")
+
+def print_header_row():
+    print("  X", end=" ")
+    for n in range(0, max_number + 1):
+        print(f"{n:>3}", end=" ")
+    print("")
+
+
+print_header_row()
+
+def print_body():
+    for i in range(0, max_number + 1):
+        print(f"{i:>3}", end=" ")
+        # Now print the rest of the row
+        for j in range(0, max_number + 1):
+            print(f"{i*j:>3}", end=" ")
+        print("")
+
+print_body()
+
+
+number = 10
+while number >= 0:
+    if number == 3:
+        number = number - 1
+        continue
+    print(number)
+    number = number - 1
+
+for i in range(3):
+    for j in ("🟩", "🟩", "🟩"):
+        print(j, end=" ")
+    print("")
+
+```
