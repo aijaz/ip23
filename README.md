@@ -1975,3 +1975,109 @@ for i in range(3):
     print("")
 
 ```
+
+
+# Week 13 4/16/23
+
+## Homework part 1
+```python
+maximum_guesses = 6
+number_of_guesses = 0
+random_word = 'OCEAN'
+
+while True:
+    guess = input("Enter a word: ").strip().upper()
+    number_of_guesses = number_of_guesses + 1
+    if guess == random_word:
+        print("That's correct!")
+        break
+
+    print("That's wrong")
+    if number_of_guesses < maximum_guesses:
+        print("Try again.")
+    else:
+        print(f"Sorry. You ran out of guesses. The word is {random_word}.")
+        break
+
+print("Game Over")
+
+```
+
+## Boggle Homework
+
+```python
+import random
+
+board = []
+
+cubes = [
+    "AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS",
+    "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
+    "DISTTY", "EEGHNW", "EEINSU", "EHRTVW",
+    "EIOSST", "ELRTTY", "HIMNUQ", "HLNNRZ"
+]
+
+for cube in cubes:
+    random_character = random.choice(cube)
+    board.append(random_character)
+
+print(board)
+```
+
+OR 
+
+```python
+import random
+
+cubes = [
+    "AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS",
+    "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
+    "DISTTY", "EEGHNW", "EEINSU", "EHRTVW",
+    "EIOSST", "ELRTTY", "HIMNUQ", "HLNNRZ"
+]
+
+board = [random.choice(cube) for cube in cubes]
+
+print(board)
+
+```
+
+## Final homework solution
+
+```python
+import random
+
+cubes = [
+    "AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS",
+    "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
+    "DISTTY", "EEGHNW", "EEINSU", "EHRTVW",
+    "EIOSST", "ELRTTY", "HIMNUQ", "HLNNRZ"
+]
+
+board = [random.choice(cube) for cube in cubes]
+
+print(board)
+
+while True:
+    word = input("Please enter a word: ").strip().upper()
+    if word == "Q":
+        break
+    if len(word) < 3:
+        print("All words need to be at least 3 letters long")
+```
+
+## Nested Loop Homework Solution
+
+```python
+months = ['January', 'February', 'March',
+          'April', 'May', 'June',
+          'July', 'August', 'September',
+          'October', 'November', 'December']
+
+for month_name in months:
+    num_vowels = 0
+    for character in month_name:
+        if character.upper() in 'AEIOU':
+            num_vowels = num_vowels + 1
+    print(f"{month_name} has {num_vowels} vowels")
+```
