@@ -2081,3 +2081,296 @@ for month_name in months:
             num_vowels = num_vowels + 1
     print(f"{month_name} has {num_vowels} vowels")
 ```
+
+
+```python
+class Cat:
+    """A simple attempt to model a cat."""
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def sleep(self):
+        print(f"{self.name} is sleeping")
+
+    def purr(self):
+        print(f"{self.name} is purring")
+
+    def play(self):
+        print(f"{self.name} is playing")
+
+    def hide(self):
+        print(f"{self.name} is hiding somewhere")
+
+
+my_cat = Cat('Nosey', 2.5)
+print("My cat's name is", my_cat.name)
+my_cat.hide()
+
+your_cat = Cat('Moose', 2.5)
+print(f"Your cat's name is {your_cat.name}")
+your_cat.play()
+if your_cat.age > my_cat.age:
+    print("Your cat is older than mine")
+elif your_cat.age < my_cat.age:
+    print("My cat is older than yours")
+else:
+    print("Our cats are the same age.")
+
+your_cat.age = 6
+print(f"{your_cat.name}'s age is {your_cat.age}")
+print(f"{my_cat.name}'s age is {my_cat.age}")
+
+
+class Car:
+
+    def __init__(self, make, model, year, color, mpg):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.odometer_reading = 0
+        self.mpg = mpg
+
+    def descriptive_name(self):
+        long_name = f"{self.color} {self.year} {self.make} {self.model} with {self.mpg} miles/gal"
+        return long_name.title()
+
+    def read_odo(self):
+        return f"This car has {self.odometer_reading} miles on it"
+
+    def drive(self, miles):
+        if miles < 0:
+            print("Hey! That's illegal")
+            return
+        self.odometer_reading += miles
+
+    def update_odometer(self, new_value):
+        if new_value < self.odometer_reading:
+            print("Hey! That's illegal!!!!!!")
+            return
+        self.odometer_reading = new_value
+
+
+my_new_car = Car('Subaru', 'Impreza', '2021', 'blue', 25)
+print(my_new_car.descriptive_name())
+print(my_new_car.read_odo())
+my_new_car.odometer_reading = my_new_car.odometer_reading + 20
+print(my_new_car.read_odo())
+my_new_car.odometer_reading = my_new_car.odometer_reading + 5
+print(my_new_car.read_odo())
+
+my_new_car.drive(30)
+print(my_new_car.read_odo())
+my_new_car.drive(10)
+print(my_new_car.read_odo())
+
+my_new_car.drive(-60)
+print(my_new_car.read_odo())
+
+my_new_car.update_odometer(70)
+print(my_new_car.read_odo())
+
+my_new_car.update_odometer(7)
+print(my_new_car.read_odo())
+
+my_new_car.odometer_reading = 5
+print(my_new_car.read_odo())
+
+
+class ElectricCar(Car):
+
+    def __init__(self, make, model, year, color):
+        super().__init__(make, model, year, color, None)
+
+
+leaf = ElectricCar('Nissan', 'leaf', 2023, 'red')
+print(leaf.descriptive_name())
+
+# ABAFT
+```
+
+
+# Week 14 4/30
+
+```python
+from pathlib import Path
+
+f = open("words.txt")
+w = f.read().strip()
+print(w)
+word_list = w.splitlines()  # w.split("\n")
+print(word_list)
+for word in word_list:
+    print(f"The word is {word.upper()}")
+
+
+new_word = input("Enter a word: ").strip().lower()
+f = open("words.txt", "a")
+f.write(f"{new_word}\n")
+
+
+if denominator == 0:
+    print("bad denom")
+else:
+    print(f"The value is {numerator/denominator}")
+    print("Pretend to do some other stuff")
+    if denominator == 0:
+        print("bad denom")
+    else:
+        new_value = (numerator + 1) / denominator
+        print(new_value)
+        print("Pretend to do some more other stuff")
+        if denominator == 0:
+            print("bad denom")
+        else:
+            another_value = (numerator + 2) / denominator
+            print(another_value)
+
+while True:
+    try:
+        numerator = int(input("Enter a number: ").strip())
+        denominator = int(input("Enter a number: ").strip())
+        print(f"The value is {numerator/denominator}")
+        print("Pretend to do some other stuff")
+        new_value = (numerator + 1) / denominator
+        print(new_value)
+        print("Pretend to do some other stuff")
+        another_value = (numerator + 2) / denominator
+        print(another_value)
+    except ZeroDivisionError:
+        print("Bad denom")
+    else:
+        print("Thank you for not entering zero as a denominator")
+        break
+
+all_words_file = open("allWords.txt")
+all_words = all_words_file.read().strip()
+all_words_list = all_words.splitlines()
+print(all_words_list)
+all_words_file.close()
+
+with open("allWords.txt") as all_words_file:
+    all_words = all_words_file.read().strip().upper()
+    all_words_list = all_words.splitlines()
+
+with open("badwords.txt") as bad_words_file:
+    bad_words = bad_words_file.read().strip().upper()
+    bad_words_list = bad_words.splitlines()
+
+with open("commonwords.txt") as common_words_file:
+    common_words = common_words_file.read().strip().upper()
+    common_words_list = common_words.splitlines()
+
+guessable_words = [word for word in all_words_list if word not in bad_words_list]
+secret_words = [word for word in common_words_list if word not in bad_words_list]
+# print(guessable_words)
+# print(secret_words)
+
+from random import choice
+
+
+maximum_guesses = 6
+number_of_guesses = 0
+random_word = choice(secret_words)
+history_of_guesses = []
+
+
+def get_result(secret_word, guess_word):
+    result = []
+    if len(secret_word) == 5 and len(guess_word) == 5:
+        for i, letter in enumerate(guess):
+            if secret_word[i] == letter:
+                result.append('🟩')
+            elif letter in secret_word:
+                result.append('🟨')
+            else:
+                result.append('🟥')
+
+    return"".join(result)
+
+
+def add_to_history_and_print(the_result):
+    history_of_guesses.append(the_result)
+    for r in history_of_guesses:
+        print(r)
+
+
+while True:
+    guess = input("Enter a word: ").strip().upper()
+    number_of_guesses = number_of_guesses + 1
+    if guess == random_word:
+        result = get_result(random_word, guess)
+        add_to_history_and_print(result)
+        print(f"That's correct! The word was {random_word}")
+        break
+
+    print("That's wrong")
+    if number_of_guesses < maximum_guesses:
+        print("Try again.")
+        result = get_result(random_word, guess)
+        add_to_history_and_print(result)
+    else:
+        print(f"Sorry. You ran out of guesses. The word is {random_word}.")
+        break
+
+print("Game Over")
+
+"""
+random_word is EARNS
+guess          EAGLE
+               🟩🟩🟥🟥🟨 
+               🟩🟩🟥🟥🟥
+"""
+
+```
+
+
+
+# Week 16 5/14
+
+```python
+# Basic arcade program using objects
+# Displays a white window with a blue circle in the middle
+
+# Imports
+import arcade
+
+# Constants
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 800
+SCREEN_TITLE = "Welcome to Arcade"
+RADIUS = 150
+
+# Classes
+class Welcome(arcade.Window):
+    """Main welcome window
+    """
+    def __init__(self, color):
+        """Initialize the window
+        """
+
+        # Call the parent class constructor
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+
+        # Set the background window
+        arcade.set_background_color(color)
+
+    def on_draw(self):
+        """Called whenever you need to draw your window
+        """
+
+        # Clear the screen and start drawing
+        arcade.start_render()
+
+        # Draw a blue circle
+        arcade.draw_circle_filled(
+            SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, RADIUS, arcade.color.BLUE
+        )
+
+# Main code entry point
+if __name__ == "__main__":
+    app = Welcome(arcade.color.BLUE)
+    arcade.run()
+```
